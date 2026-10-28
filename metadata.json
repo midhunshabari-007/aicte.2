@@ -1,0 +1,8 @@
+{
+  "name": "AICTE AI-Assisted Application Scrutiny Platform",
+  "description": "AI-assisted scrutiny and decision-support layer for AICTE authorized officers to perform preliminary cross-document validation, three-way comparison, and regulatory verification before official decision-making.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

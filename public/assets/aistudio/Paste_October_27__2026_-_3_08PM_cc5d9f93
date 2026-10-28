@@ -1,0 +1,1762 @@
+AICTE AI-ASSISTED APPLICATION SCRUTINY PLATFORM
+
+COMPLETE END-TO-END MASTER PROMPT
+
+You are an expert AI solution architect, senior software architect, AI/ML engineer, full-stack web application developer, UI/UX designer, document intelligence engineer, database architect, and government-regulatory workflow analyst.
+
+I want you to understand, design, and eventually build the following complete web application.
+
+IMPORTANT:
+
+This prompt contains the FINALIZED product concept.
+
+Do NOT change the core business idea.
+
+Do NOT introduce unrelated functionality.
+
+Do NOT redesign the workflow.
+
+Do NOT make AI the final decision-maker.
+
+Do NOT build a separate applicant-facing product.
+
+The system is an AI-assisted scrutiny layer that works AFTER an institution submits an application and supporting documents through the existing AICTE portal/process.
+
+==================================================
+
+1. PROJECT IN ONE LINE
+   ==================================================
+
+An institution submits an application and supporting documents through the AICTE portal; our AI scrutiny layer performs preliminary validation and cross-checking, produces evidence-linked findings, and presents the results to an authorized AICTE officer for manual verification and final regulatory decision-making.
+
+CORE PRINCIPLE:
+
+AI = Preliminary Check + Decision Support
+
+OFFICER = Verification + Final Decision
+
+==================================================
+2. ACTUAL PROBLEM BEING SOLVED
+
+AICTE officers may need to examine applications and many supporting documents manually.
+
+This can involve repetitive checking such as:
+
+- Checking whether required documents are present
+- Checking document completeness
+- Checking dates and expiry
+- Comparing information between documents
+- Comparing application information with documents
+- Comparing documents with previous institutional records
+- Identifying mismatched identifiers
+- Detecting duplicate documents
+- Identifying potential anomalies
+- Checking applicable regulatory requirements
+- Identifying cases requiring additional verification
+
+The purpose of this platform is to perform these preliminary repetitive checks before the officer manually reviews the application.
+
+The platform should help officers spend less time on routine checking and more time on cases requiring human judgement.
+
+==================================================
+3. WHO IS THE USER?
+
+The primary user of this application is:
+
+AICTE AUTHORIZED OFFICER
+
+The institution is the applicant whose application and documents are being processed.
+
+The institution does NOT directly use the main scrutiny dashboard.
+
+The main application is an officer-facing scrutiny and decision-support platform.
+
+==================================================
+4. IMPORTANT SCOPE DECISION
+
+DO NOT build:
+
+- Applicant registration
+- Applicant login
+- Applicant dashboard
+- Applicant notification system
+- Applicant document correction workflow
+- Applicant re-upload workflow
+- Applicant-facing complaint system
+- Separate public institution management portal
+
+The institution's application submission is assumed to happen through the existing AICTE portal/process.
+
+Our system receives the submitted application and documents after submission.
+
+==================================================
+5. AUTHENTICATION
+
+The real AICTE portal already has authentication.
+
+Therefore, the production concept assumes that the authorized officer is already authenticated through the AICTE environment.
+
+Do NOT create a normal public login flow as a core feature.
+
+For the prototype/demo:
+
+Use a MOCK OFFICER SESSION.
+
+Example:
+
+"Continue as AICTE Officer"
+
+This is only to simulate an already authenticated officer.
+
+Do NOT claim that the prototype is connected to real AICTE authentication.
+
+==================================================
+6. REAL AICTE PORTAL INTEGRATION
+
+The prototype does NOT have access to the real AICTE portal.
+
+Therefore, do NOT pretend to connect to real AICTE systems.
+
+Instead, create a separate:
+
+DEMO: SIMULATED AICTE PORTAL
+
+This mock portal is only for demonstrating how an application could enter the scrutiny platform.
+
+The mock portal should simulate:
+
+Institution selection
+↓
+Application category
+↓
+Application information
+↓
+Document upload
+↓
+Submit
+
+After submission:
+
+Mock Portal
+↓
+POST /api/applications/intake
+↓
+AI Scrutiny Backend
+↓
+Processing
+↓
+Officer Dashboard
+
+IMPORTANT:
+
+The mock portal is a DEMO SIMULATOR.
+
+It is NOT part of the real production applicant workflow.
+
+==================================================
+7. WHY USE A MOCK PORTAL?
+
+A real AICTE portal integration would require official access, permissions, APIs, authentication integration, security requirements, and infrastructure from AICTE.
+
+The prototype does not have these.
+
+Therefore:
+
+Use the mock portal for demonstration.
+
+In a future production deployment, the same intake concept can be connected to an officially provided AICTE integration mechanism.
+
+Do NOT claim that the current prototype is "AICTE integrated".
+
+Use language such as:
+
+"Prototype integration-ready architecture."
+
+==================================================
+8. END-TO-END BUSINESS WORKFLOW
+
+The complete workflow is:
+
+INSTITUTION
+↓
+Existing AICTE Portal
+↓
+Application + Supporting Documents Submitted
+↓
+Our AI Scrutiny Layer Receives Submission
+↓
+Application Category Identification
+↓
+Applicable Checklist Selection
+↓
+Document Processing
+↓
+OCR / Text Extraction
+↓
+Document Classification
+↓
+Structured Data Extraction
+↓
+Application ↔ Document Comparison
+↓
+Document ↔ Document Comparison
+↓
+Document ↔ Existing Institutional Record Comparison
+↓
+Expiry / Completeness / Duplicate / Anomaly Checks
+↓
+Authorized / Mock External Verification
+↓
+Regulatory Checklist Evaluation
+↓
+Findings Generated
+↓
+Evidence Attached
+↓
+Document-wise Status Generated
+↓
+Application-level Summary Generated
+↓
+Review Priority Generated
+↓
+Officer Dashboard
+↓
+Officer Reviews AI Findings
+↓
+Officer Performs Manual Verification Where Required
+↓
+Officer Adds Observations
+↓
+Officer Resolves Findings
+↓
+Officer Records Final Decision
+↓
+Audit Trail Preserved
+
+==================================================
+9. APPLICATION CATEGORY
+
+When an application enters the system, the platform must identify its application category.
+
+Example:
+
+Extension of Approval (EoA)
+
+Other approval-related categories may exist in future.
+
+The system must be designed so new categories can be added without rewriting the entire application.
+
+==================================================
+10. CONFIGURABLE CHECKLIST
+
+The applicable regulatory checklist depends on the application category.
+
+Therefore:
+
+DO NOT create one universal hard-coded checklist.
+
+Instead:
+
+Application Category
+↓
+Applicable Checklist
+↓
+Applicable Rules
+↓
+Validation
+
+Prototype implementation:
+
+Checklist rules can be stored as seed data/configuration.
+
+A separate Admin Checklist Management screen is NOT required for the first prototype.
+
+However, the architecture should allow rules to become configurable in future.
+
+==================================================
+11. DOCUMENT PROCESSING
+
+For every submitted document, perform preliminary processing.
+
+Possible processing stages:
+
+1. File validation
+2. Document classification
+3. Text extraction
+4. OCR if required
+5. Structured field extraction
+6. Validation
+7. Cross-document comparison
+8. Institutional-record comparison
+9. Duplicate detection
+10. Anomaly detection
+11. Verification
+12. Finding generation
+13. Status assignment
+14. Audit logging
+
+==================================================
+12. PDF PROCESSING
+
+For digital PDFs containing selectable text:
+
+Use:
+
+PyMuPDF / pdfplumber
+
+For scanned image PDFs:
+
+Use:
+
+Tesseract OCR
+
+However, OCR should initially be treated as a Phase 2 feature.
+
+Phase 1 can focus on digital PDFs and seeded extracted data.
+
+The architecture must allow OCR to be added later.
+
+==================================================
+13. DOCUMENT CLASSIFICATION
+
+The system should identify the type of submitted document.
+
+Examples:
+
+- Affidavit
+- NOC
+- Accreditation Certificate
+- Undertaking
+- Permission document
+- Programme document
+- Other supporting document
+
+For the prototype, classification may initially use deterministic/rule-based logic based on document content and known demo document formats.
+
+The architecture should allow more advanced ML/document-classification models later.
+
+==================================================
+14. DATA EXTRACTION
+
+The system should extract relevant fields from documents.
+
+Example NOC:
+
+Institution Name
+Document Number
+Issue Date
+Expiry Date
+Issuing Authority
+Institution Identifier
+
+Example programme document:
+
+Programme Name
+Approved Intake
+Academic Year
+Institution Name
+
+The extracted values must be stored.
+
+Where technically possible, also store:
+
+- Page number
+- Evidence text/snippet
+- Source document
+- Extraction status
+
+IMPORTANT:
+
+Never guess missing information.
+
+If the system cannot reliably extract a required field:
+
+Status:
+UNABLE TO VERIFY
+
+Route to manual review where appropriate.
+
+==================================================
+15. THREE-WAY COMPARISON
+
+This is one of the CORE FEATURES.
+
+The system must compare information from three major sources.
+
+SOURCE 1:
+Application form data
+
+SOURCE 2:
+Submitted documents
+
+SOURCE 3:
+Available AICTE/institutional records
+
+Example:
+
+Application:
+Approved Intake = 120
+
+Submitted Programme Document:
+Approved Intake = 60
+
+Previous AICTE Record:
+Approved Intake = 60
+
+Result:
+
+POTENTIAL ISSUE DETECTED
+
+Evidence:
+
+Application = 120
+Document = 60
+Previous Record = 60
+
+Manual verification required.
+
+==================================================
+16. DOCUMENT ↔ DOCUMENT COMPARISON
+
+The system must also compare information between submitted documents.
+
+Example:
+
+Affidavit:
+Institution ID = ABC123
+
+NOC:
+Institution ID = ABC123
+
+Programme Document:
+Institution ID = XYZ999
+
+Result:
+
+POTENTIAL ISSUE DETECTED
+
+Reason:
+Institution identifiers are inconsistent across submitted documents.
+
+The officer should be able to see the comparison evidence.
+
+==================================================
+17. DOCUMENT ↔ EXISTING RECORD COMPARISON
+
+Available institutional records may include:
+
+- Previous EoA records
+- Previous approval status
+- Approved programmes
+- Approved courses
+- Approved intake
+- Faculty records
+- Institution-related records
+- Compliance status
+- Deficiency status
+- TER payment status
+- Application history
+- Other authorized institutional records
+
+For the prototype:
+
+Use MOCK / SEEDED institutional records.
+
+Clearly label them:
+
+DEMO / MOCK DATA
+
+Do NOT present them as real AICTE records.
+
+==================================================
+18. REQUIRED CHECKS
+
+The system should be capable of identifying:
+
+- Missing information
+- Missing documents
+- Incomplete submissions
+- Expired documents
+- Inconsistent information
+- Mismatched identifiers
+- Irregular dates
+- Duplicate documents
+- Potential anomalies
+- Potential document alteration indicators
+- Possible compliance gaps
+
+==================================================
+19. DOCUMENT STATUS SYSTEM
+
+Use exactly these primary document statuses:
+
+🟢 NO ISSUE DETECTED
+
+Meaning:
+No issue was detected during the preliminary automated checks.
+
+🟡 MANUAL VERIFICATION REQUIRED
+
+Meaning:
+The system cannot reliably complete the verification or additional human verification is required.
+
+🔴 POTENTIAL ISSUE DETECTED
+
+Meaning:
+The system detected a possible mismatch, anomaly, or compliance concern.
+
+⚪ UNABLE TO VERIFY
+
+Meaning:
+The system does not have sufficient information or could not complete the check.
+
+IMPORTANT:
+
+"Unable to verify" does NOT mean "invalid".
+
+"No issue detected" does NOT mean "100% genuine".
+
+"Potential issue detected" does NOT mean "fraud".
+
+==================================================
+20. EXTERNAL VERIFICATION STATUS
+
+External verification should use:
+
+MATCH
+MISMATCH
+UNABLE TO VERIFY
+PENDING
+
+Because real external authority systems are not available in the prototype:
+
+Clearly label the result:
+
+DEMO / MOCK / SIMULATED VERIFICATION
+
+Do NOT fabricate real government verification.
+
+==================================================
+21. AI FINDINGS
+
+Every important finding must explain:
+
+WHAT was detected?
+
+WHY was it detected?
+
+WHAT evidence supports it?
+
+WHICH sources were compared?
+
+WHAT should the officer review?
+
+Example:
+
+---
+
+POTENTIAL INTAKE MISMATCH
+
+Application:
+120
+
+Programme Document:
+60
+
+Previous Record:
+60
+
+Why flagged:
+Current application intake differs from the available previous approved record and supporting document.
+
+Evidence:
+Application Form — Page 2
+Programme Document — Page 3
+Previous Record — EoA 2025
+
+Recommended action:
+Manual verification required.
+
+==================================================
+22. AI CONFIDENCE
+
+If AI confidence is displayed, it must NOT be treated as a regulatory decision.
+
+Example:
+
+Confidence:
+92%
+
+Meaning:
+
+"The automated system has high confidence in the extracted/comparison result."
+
+It does NOT mean:
+
+"92% chance of fraud."
+
+Avoid misleading interpretations.
+
+==================================================
+23. AI FAILURE AND FALLBACK
+
+The system must fail safely.
+
+If AI cannot reliably complete a check:
+
+AI cannot determine
+↓
+Do not guess
+↓
+Do not approve
+↓
+Do not reject
+↓
+Show reason
+↓
+Manual verification required
+
+Examples:
+
+OCR failure:
+→ Manual verification required
+
+Document classification failure:
+→ Manual verification required
+
+Field extraction failure:
+→ Unable to verify
+
+External verification unavailable:
+→ Unable to verify
+
+Conflicting AI results:
+→ Manual verification required
+
+Missing data:
+→ Insufficient information / Manual verification
+
+Rule engine failure:
+→ Automated compliance check unavailable
+
+Database/record retrieval failure:
+→ Record unavailable / Manual verification
+
+AI service timeout:
+→ Processing failed / Retry / Manual verification
+
+==================================================
+24. PARTIAL PROCESSING
+
+If some documents are successfully processed and others fail:
+
+Show the exact state.
+
+Example:
+
+Total documents:
+12
+
+Successfully processed:
+9
+
+Manual verification:
+2
+
+Processing failed:
+1
+
+Overall:
+REVIEW REQUIRED
+
+Never hide failed processing.
+
+Never mark unprocessed documents as verified.
+
+==================================================
+25. DUPLICATE DETECTION
+
+The system may compare the current submitted documents against:
+
+- Other documents in the same application
+- Previously submitted documents where available
+
+If duplicate detection is uncertain:
+
+🟡 POSSIBLE DUPLICATE
+
+The officer must inspect the evidence.
+
+==================================================
+26. ANOMALY / ALTERATION DETECTION
+
+If the system detects potential document anomalies:
+
+Show:
+
+🔴 POTENTIAL DOCUMENT ANOMALY
+
+Do NOT say:
+
+"Document is forged."
+
+Instead:
+
+"Potential alteration/anomaly detected. Manual verification required."
+
+Show supporting evidence/indicators where appropriate.
+
+Final authenticity determination belongs to the authorized officer.
+
+==================================================
+27. INFRASTRUCTURE / COMPLIANCE GAPS
+
+The system may identify potential infrastructure or compliance gaps from available submitted information and records.
+
+Example:
+
+Requirement:
+Required infrastructure evidence
+
+Available evidence:
+Incomplete
+
+Result:
+
+🟡 MANUAL VERIFICATION REQUIRED
+
+Do NOT claim physical infrastructure is definitely present or absent unless reliable evidence supports that conclusion.
+
+Physical inspection remains an official/human process.
+
+==================================================
+28. APPLICATION OVERALL STATUS
+
+The application-level result must NOT be:
+
+APPROVED
+or
+REJECTED
+
+Those are official regulatory decisions.
+
+Instead use statuses such as:
+
+REVIEW REQUIRED
+PRELIMINARY CHECK COMPLETED
+MANUAL VERIFICATION REQUIRED
+PROCESSING
+PROCESSING FAILED
+
+Example:
+
+Application:
+AICTE-EQA-2026-001
+
+Documents:
+12
+
+No issue detected:
+8
+
+Manual verification required:
+3
+
+Potential issues:
+1
+
+Overall preliminary status:
+
+REVIEW REQUIRED
+
+==================================================
+29. REVIEW PRIORITY
+
+Use:
+
+LOW
+MEDIUM
+HIGH
+
+This is only a review-priority aid.
+
+It is NOT a regulatory judgement.
+
+Example:
+
+LOW:
+No significant automated issues.
+
+MEDIUM:
+One or more items need manual verification.
+
+HIGH:
+Potential mismatch/anomaly/compliance concern requiring closer review.
+
+==================================================
+30. OFFICER DASHBOARD
+
+Create a professional officer-focused dashboard.
+
+Show:
+
+Total Applications
+Pending Review
+Processing
+Preliminary Checks Completed
+Manual Verification Required
+Potential Issues
+High Priority
+Recently Reviewed
+
+The dashboard should help officers quickly understand workload and prioritize cases.
+
+==================================================
+31. APPLICATION LIST
+
+Show applications in a table/list.
+
+Example columns:
+
+Application ID
+Institution
+Application Type
+Submitted Date
+Documents
+Overall Status
+Review Priority
+Issues
+Action
+
+Example:
+
+AICTE-001
+ABC Engineering College
+EoA
+12 Documents
+Review Required
+Medium
+2 Issues
+View
+
+==================================================
+32. APPLICATION DETAILS
+
+When the officer opens an application, show:
+
+Institution details
+Application category
+Application ID
+Submission information
+Overall preliminary status
+Review priority
+Document count
+Finding count
+
+Then provide tabs/sections for:
+
+Documents
+Findings
+Checklist
+Audit Trail
+
+Do not create unnecessary separate pages if a tab/panel is more efficient.
+
+==================================================
+33. DOCUMENT VIEWER
+
+The officer must be able to open a document.
+
+Use a split/side-by-side interface:
+
+LEFT:
+Original document preview
+
+RIGHT:
+AI analysis
+
+Show:
+
+Document type
+Processing status
+Extracted fields
+AI status
+Verification status
+Findings
+Evidence
+Comparison results
+
+Example:
+
+---
+
+DOCUMENT PREVIEW
+
+NOC.pdf
+
+AI RESULT:
+🟢 NO ISSUE DETECTED
+
+Extracted Information:
+
+Institution:
+ABC Engineering College
+
+Document No:
+NOC-12345
+
+Issue Date:
+10-05-2026
+
+Expiry:
+10-05-2027
+
+Comparison:
+Institution name → MATCH
+Identifier → MATCH
+Date → VALID
+
+Evidence:
+Page 1
+Relevant extracted text
+
+==================================================
+34. MANUAL VERIFICATION QUEUE
+
+Create a section showing documents/applications requiring human attention.
+
+Example:
+
+Manual Verification Queue
+
+1. Accreditation.pdf
+   Reason: External verification unavailable
+
+2. Programme.pdf
+   Reason: Intake mismatch
+
+3. NOC.pdf
+   Reason: Identifier inconsistency
+
+Officer can open each case and review the evidence.
+
+==================================================
+35. OFFICER ACTION PANEL
+
+The officer must be able to record an action/observation.
+
+Possible actions:
+
+- Verify
+- Request additional verification
+- Mark finding resolved
+- Disagree with AI finding
+- Add observation
+- Escalate for further review
+- Record final official decision
+
+The exact final-decision choices should be configurable and must not be invented as AI decisions.
+
+==================================================
+36. OFFICER OVERRIDE
+
+The officer can disagree with an AI finding.
+
+Example:
+
+AI:
+Potential mismatch detected
+
+Officer:
+Reviewed evidence
+
+Officer conclusion:
+Mismatch not confirmed
+
+Officer observation:
+"Verified against submitted supporting record."
+
+The original AI finding must remain in the audit trail.
+
+Do NOT silently overwrite the AI result.
+
+==================================================
+37. FINAL REVIEW
+
+Before final decision, show a complete summary:
+
+Application information
+↓
+Documents
+↓
+AI findings
+↓
+Resolved findings
+↓
+Outstanding manual verification
+↓
+Officer observations
+↓
+Checklist status
+↓
+Audit history
+↓
+Final official decision
+
+The officer then records the official decision.
+
+AI does not make this decision.
+
+==================================================
+38. AUDIT TRAIL
+
+Maintain an audit history.
+
+Example:
+
+09:32
+Application received
+
+09:33
+Documents registered
+
+09:34
+Document processing started
+
+09:35
+OCR/text extraction completed
+
+09:36
+Checklist applied
+
+09:37
+Potential intake mismatch detected
+
+09:38
+Mock verification attempted
+
+09:40
+Officer opened finding
+
+09:45
+Officer added observation
+
+09:48
+Finding resolved
+
+09:55
+Final decision recorded
+
+For relevant events record:
+
+- Event
+- Timestamp
+- User/action
+- Source
+- Result
+- Evidence/reference where applicable
+
+==================================================
+39. CORE DATABASE ENTITIES
+
+Design the database around:
+
+Application
+
+Document
+
+ExtractedField
+
+ChecklistRule
+
+Finding
+
+VerificationRecord
+
+InstitutionRecord
+
+OfficerObservation
+
+AuditEvent
+
+The relationships must support:
+
+Application
+→ many Documents
+
+Application
+→ many Findings
+
+Application
+→ many AuditEvents
+
+Document
+→ many ExtractedFields
+
+Document
+→ many Findings
+
+Document
+→ many VerificationRecords
+
+Application category
+→ applicable ChecklistRules
+
+Institution
+→ InstitutionalRecords
+
+==================================================
+40. DEMO DATA
+
+Because real AICTE data is not available:
+
+Use clearly marked mock/seed data.
+
+Create realistic demo institutions and records.
+
+Example:
+
+Institution:
+ABC Engineering College
+
+Previous EoA:
+Approved Intake = 60
+
+Current Application:
+Requested Intake = 120
+
+Programme Document:
+Intake = 60
+
+This should intentionally produce a demonstration mismatch.
+
+Use fake/demo documents such as:
+
+- Affidavit
+- NOC
+- Accreditation certificate
+- Undertaking
+- Programme document
+
+Clearly label demo data and demo documents as:
+
+DEMO DATA
+or
+MOCK DATA
+
+Do not represent them as genuine AICTE records.
+
+==================================================
+41. DEMONSTRATION SCENARIO
+
+The primary demo should show:
+
+1. Open the simulated AICTE portal.
+2. Select a demo institution.
+3. Select Extension of Approval.
+4. Enter application information.
+5. Upload sample documents.
+6. Click Submit.
+7. Application enters the scrutiny backend.
+8. Processing starts.
+9. Officer dashboard shows the application.
+10. Processing completes.
+11. Show 12 documents.
+12. 8 documents → 🟢 No issue detected.
+13. 3 documents → 🟡 Manual verification required.
+14. 1 document → 🔴 Potential issue detected.
+15. Open the red document.
+16. Show intake mismatch:
+    Application = 120
+    Document = 60
+    Existing Record = 60
+17. Show evidence.
+18. Officer reviews it.
+19. Officer adds an observation.
+20. Officer resolves/records the finding.
+21. Officer records the final official decision.
+22. Audit trail shows the complete history.
+
+This should be the main end-to-end demonstration.
+
+==================================================
+42. MOCK EXTERNAL VERIFICATION
+
+Since real issuing-authority APIs are unavailable:
+
+Create simulated verification behavior.
+
+Example:
+
+Verification Source:
+DEMO / MOCK AUTHORITY
+
+Result:
+MATCH
+
+Timestamp:
+Demo timestamp
+
+Reference:
+MOCK-VERIFY-12345
+
+Clearly indicate:
+
+SIMULATED VERIFICATION
+
+Never imply that a real authority was contacted.
+
+==================================================
+43. UI/UX DESIGN
+
+The application should look like a professional government regulatory system.
+
+Design principles:
+
+- Clean
+- Professional
+- Minimal
+- Information-dense but readable
+- Evidence-focused
+- Easy to navigate
+- Clear statuses
+- Clear warnings
+- Clear separation between AI results and official decisions
+
+Avoid:
+
+- Excessive animations
+- Gaming-style UI
+- Unnecessary AI graphics
+- Excessive gradients
+- Decorative features that distract from scrutiny
+
+The most important information should be visible quickly.
+
+==================================================
+44. MAIN SCREENS
+
+The practical prototype should cover these functional areas:
+
+1. Mock AICTE Portal / Simulated Entry
+2. Mock Officer Session
+3. Officer Dashboard
+4. Application List
+5. Application Details
+6. Documents Tab
+7. Findings Tab
+8. Checklist Tab
+9. Audit Trail Tab
+10. Document Viewer
+11. AI Result Panel
+12. Evidence / Comparison Panel
+13. Manual Verification Queue
+14. Officer Review / Action + Final Review
+
+Where appropriate, combine related functionality into tabs, panels, drawers, or sections rather than creating unnecessary pages.
+
+==================================================
+45. TECHNOLOGY STACK
+
+Use this stack unless there is a strong technical reason to discuss a change BEFORE implementation.
+
+FRONTEND:
+
+React
+TypeScript
+Vite
+Tailwind CSS
+React Router
+
+BACKEND:
+
+Python
+FastAPI
+Pydantic
+SQLAlchemy
+Alembic
+
+DATABASE:
+
+PostgreSQL
+
+DOCUMENT PROCESSING:
+
+PyMuPDF / pdfplumber
+
+OCR:
+
+Tesseract — Phase 2
+
+FILE STORAGE:
+
+Local filesystem — Phase 1
+
+MinIO — Phase 2
+
+BACKGROUND PROCESSING:
+
+FastAPI Background Tasks — Phase 1
+
+Celery + Redis — Phase 2
+
+CONTAINERIZATION:
+
+Docker Compose
+
+TESTING:
+
+pytest
+
+==================================================
+46. PHASE 1
+
+Keep the first implementation simple and functional.
+
+Use:
+
+React + TypeScript + Vite
+Tailwind
+React Router
+FastAPI
+SQLAlchemy
+PostgreSQL
+PyMuPDF
+Local file storage
+FastAPI Background Tasks
+Docker Compose
+
+Focus on:
+
+End-to-end workflow
+Database
+API
+Document upload
+Processing
+Seed data
+Comparison
+Findings
+Officer review
+Audit trail
+Mock portal
+
+==================================================
+47. PHASE 2
+
+After Phase 1 workflow is stable, add:
+
+Tesseract OCR
+Celery
+Redis
+MinIO
+More advanced document classification
+More advanced extraction
+More advanced anomaly detection
+Additional verification integrations
+
+Do NOT overcomplicate Phase 1.
+
+==================================================
+48. BACKEND PROCESSING PIPELINE
+
+The backend should conceptually execute:
+
+Application Intake
+↓
+Save Application
+↓
+Save Documents
+↓
+Create Processing Status
+↓
+Identify Category
+↓
+Load Checklist Rules
+↓
+Extract PDF Text
+↓
+OCR if required
+↓
+Classify Documents
+↓
+Extract Fields
+↓
+Save Extracted Fields
+↓
+Compare Application ↔ Documents
+↓
+Compare Documents ↔ Documents
+↓
+Compare Documents ↔ Institutional Records
+↓
+Check Expiry
+↓
+Check Missing Information
+↓
+Check Duplicates
+↓
+Run Anomaly Checks
+↓
+Run Mock Verification
+↓
+Evaluate Checklist
+↓
+Generate Findings
+↓
+Assign Document Status
+↓
+Generate Application Summary
+↓
+Assign Review Priority
+↓
+Write Audit Events
+↓
+Make Results Available to Officer
+
+==================================================
+49. API STRUCTURE
+
+At minimum, design APIs around these functional areas:
+
+Application Intake:
+POST /api/applications/intake
+
+Applications:
+GET /api/applications
+GET /api/applications/{id}
+
+Documents:
+GET /api/applications/{id}/documents
+GET /api/documents/{id}
+
+Findings:
+GET /api/applications/{id}/findings
+
+Checklist:
+GET /api/applications/{id}/checklist
+
+Verification:
+GET /api/documents/{id}/verification
+
+Officer Actions:
+POST /api/findings/{id}/observation
+POST /api/findings/{id}/resolve
+
+Final Review:
+POST /api/applications/{id}/decision
+
+Audit:
+GET /api/applications/{id}/audit
+
+The exact API structure may be refined during implementation, but it must preserve the above business capabilities.
+
+==================================================
+50. FRONTEND FLOW
+
+The frontend should follow:
+
+Mock Portal
+↓
+Submit Application
+↓
+Officer Dashboard
+↓
+Application List
+↓
+Application Details
+↓
+Documents
+↓
+Open Document
+↓
+AI Result
+↓
+Evidence / Comparison
+↓
+Findings
+↓
+Manual Verification
+↓
+Officer Observation
+↓
+Resolve Finding
+↓
+Final Review
+↓
+Official Decision
+↓
+Audit Trail
+
+==================================================
+51. SECURITY PRINCIPLES
+
+Even though this is a prototype, design with production security in mind.
+
+Consider:
+
+- Role/access control architecture
+- Secure file handling
+- Input validation
+- API validation
+- SQL injection protection through ORM
+- File type validation
+- File size limits
+- Audit logging
+- No sensitive information in frontend logs
+- No hard-coded secrets
+- Environment variables
+- Protected APIs
+- Safe error messages
+
+Do not expose fake credentials or secrets in source code.
+
+==================================================
+52. ERROR HANDLING
+
+Every major operation should have clear states:
+
+Loading
+Processing
+Success
+Warning
+Failed
+Manual verification required
+
+The UI should never silently fail.
+
+Example:
+
+Document processing failed.
+
+Show:
+
+"Document processing could not be completed."
+
+Reason:
+"Unable to extract readable text."
+
+Action:
+"Manual verification required."
+
+==================================================
+53. IMPORTANT WORDING RULES
+
+NEVER use:
+
+"100% genuine"
+"Definitely genuine"
+"Definitely fraud"
+"AI approved"
+"AI rejected"
+"Guaranteed valid"
+
+USE:
+
+"No issue detected"
+"Potential issue detected"
+"Manual verification required"
+"Unable to verify"
+"Preliminary AI check"
+"AI-assisted finding"
+"Evidence"
+"Officer verification required"
+
+==================================================
+54. WHAT MAKES THIS DIFFERENT FROM A NORMAL DOCUMENT UPLOAD APP?
+
+This is NOT merely:
+
+Upload PDF
+→ Store PDF
+→ Show PDF
+
+It is:
+
+Application
+→ Documents
+→ Extract information
+→ Compare multiple sources
+→ Apply configurable rules
+→ Identify potential issues
+→ Generate evidence-linked findings
+→ Prioritize officer review
+→ Support manual verification
+→ Record officer actions
+→ Preserve audit trail
+
+The intelligence is in the comparison, validation, evidence and workflow.
+
+==================================================
+55. PRODUCT SUCCESS CRITERIA
+
+The prototype is successful if an evaluator can understand the complete story without needing the developer to explain every step.
+
+An evaluator should be able to see:
+
+Institution submission
+↓
+AI processing
+↓
+Document-wise verification statuses
+↓
+Evidence
+↓
+Mismatch detection
+↓
+Manual verification queue
+↓
+Officer action
+↓
+Final decision
+↓
+Audit trail
+
+The key demonstration should clearly show how repetitive preliminary checking is reduced while human regulatory authority remains intact.
+
+==================================================
+56. FINAL PRODUCT PRINCIPLE
+
+Build the platform around one simple idea:
+
+"Let AI do the repetitive preliminary scrutiny so that the AICTE officer can focus on verification, judgement and final regulatory decision-making."
+
+AI should make the officer's work:
+
+FASTER
+CLEARER
+MORE CONSISTENT
+MORE TRACEABLE
+
+But never:
+
+REPLACE THE OFFICER.
+
+==================================================
+57. IMPLEMENTATION INSTRUCTION
+
+Do not immediately dump the entire codebase.
+
+First understand this specification completely.
+
+Then work in phases.
+
+PHASE 1:
+Project architecture + folder structure
+
+PHASE 2:
+Docker Compose + PostgreSQL
+
+PHASE 3:
+FastAPI backend setup
+
+PHASE 4:
+SQLAlchemy models + Alembic
+
+PHASE 5:
+Seed demo data
+
+PHASE 6:
+Application intake API
+
+PHASE 7:
+Document upload/storage
+
+PHASE 8:
+Document processing pipeline
+
+PHASE 9:
+Comparison engine
+
+PHASE 10:
+Findings + status engine
+
+PHASE 11:
+Officer APIs
+
+PHASE 12:
+React frontend
+
+PHASE 13:
+Dashboard
+
+PHASE 14:
+Application details
+
+PHASE 15:
+Document viewer + evidence
+
+PHASE 16:
+Manual verification queue
+
+PHASE 17:
+Officer actions + final review
+
+PHASE 18:
+Audit trail
+
+PHASE 19:
+Mock AICTE portal
+
+PHASE 20:
+Complete end-to-end testing/demo
+
+At every phase:
+
+- Explain what we are building.
+- Explain why it is needed.
+- Keep the implementation beginner-friendly.
+- Do not skip important steps.
+- Do not change the finalized business workflow.
+- If you identify a technical issue, explain it before changing the architecture.
+- Keep the code modular and production-oriented.
+- Avoid unnecessary complexity.
+- Do not introduce technologies outside the agreed stack without discussion.
+
+==================================================
+58. FINAL UNDERSTANDING CHECK
+
+Before implementation, you must understand the following exact flow:
+
+Institution submits through existing AICTE portal
+↓
+Our system receives the submitted application/documents
+↓
+AI performs preliminary scrutiny
+↓
+AI extracts and compares information
+↓
+AI checks application vs documents
+↓
+AI checks document vs document
+↓
+AI checks document vs existing institutional records
+↓
+AI checks configured regulatory requirements
+↓
+AI identifies missing/expired/inconsistent/duplicate/anomalous information
+↓
+AI performs mock/simulated verification where applicable
+↓
+AI produces document-wise status
+↓
+AI produces evidence-linked findings
+↓
+AI produces overall preliminary status
+↓
+AI identifies manual verification items
+↓
+Officer reviews the evidence
+↓
+Officer manually verifies required items
+↓
+Officer records observations/actions
+↓
+Officer resolves findings
+↓
+Officer records final official decision
+↓
+Audit trail preserves the complete process
+
+THIS IS THE FINAL BUSINESS WORKFLOW.
+
+Do not alter this workflow unless I explicitly ask you to change it.
